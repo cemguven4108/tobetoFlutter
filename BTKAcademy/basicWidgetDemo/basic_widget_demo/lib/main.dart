@@ -5,13 +5,36 @@ import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
 
 void main() {
-  String message = "Hello My First Application";
   runApp(
     MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text(message)),
-        body: Center(child: Text("Body")),
-      ),
+      home: MyApp(),
     ),
   );
+}
+
+class MyApp extends StatelessWidget {
+  String message = "Hello My First Application";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(message),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text("See Result"),
+          onPressed: () {
+            var alert = const AlertDialog(
+              title: Text("Result"),
+              content: Text("Passed"),
+            );
+
+            showDialog(
+                context: context, builder: (BuildContext context) => alert);
+          },
+        ),
+      ),
+    );
+  }
 }

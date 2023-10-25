@@ -3,6 +3,7 @@ void main() {
 }
 
 int myFactorial(int nbr) {
+  //base cases
   if (nbr < 0) return -1;
   if (nbr == 0) return 1;
 
