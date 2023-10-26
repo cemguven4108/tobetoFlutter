@@ -25,13 +25,24 @@ class MyApp extends StatelessWidget {
         child: ElevatedButton(
           child: const Text("See Result"),
           onPressed: () {
-            var alert = const AlertDialog(
-              title: Text("Result"),
-              content: Text("Passed"),
+
+            int score = 55;
+            String result;
+
+            if (score >= 50) {
+              result = "Passed";
+            } else if(score >= 40) {
+              result = "Make-Up Exam";
+            } else {
+              result = "Failed";
+            }
+
+            var alert = AlertDialog(
+              title: const Text("Result"),
+              content: Text(result),
             );
 
-            showDialog(
-                context: context, builder: (BuildContext context) => alert);
+            showDialog(context: context, builder: (BuildContext context) => alert);
           },
         ),
       ),
