@@ -12,8 +12,11 @@ void main() {
   );
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   String message = "Hello My First Application";
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
