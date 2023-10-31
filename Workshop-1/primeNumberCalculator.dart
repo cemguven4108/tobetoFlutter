@@ -6,7 +6,7 @@ void main() {
 }
 
 void printPrimeNumbers(int nbr) {
-  for (int i = 1; i < nbr; i++) {
+  for (int i = 2; i < nbr; i++) {
     if (primeNumber(i)) print(i);
   }
 }

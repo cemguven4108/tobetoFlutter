@@ -30,6 +30,5 @@ int computeDigits(List<int> digits) {
   for (int i = 0; i < l; i++) {
     total += pow(digits[i], l) as int;
   }
-
   return total;
 }
