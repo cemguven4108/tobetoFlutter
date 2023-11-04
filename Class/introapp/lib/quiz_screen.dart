@@ -17,8 +17,9 @@ class _QuizScreenState extends State<QuizScreen> {
   final List<QuestionModel> _questions = List.of(questions);
 
   bool isPressed = false;
-
+  int score = 0;
   int index = 0;
+
   void nextQuestion() {
     setState(() {
       if ((index + 1) < _questions.length) {
@@ -26,7 +27,7 @@ class _QuizScreenState extends State<QuizScreen> {
           index++;
           isPressed = false;
         } else {
-          showErrorMessage();
+          showMessage("Please Answer The Question First!");
         }
       } else {
         //Temporary Solution Before The Implementation of Results Screen
@@ -36,22 +37,26 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
-  void showErrorMessage() {
+  void showMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
+      SnackBar(
         backgroundColor: Colors.redAccent,
+        behavior: SnackBarBehavior.floating,
         content: Center(
           child: Text(
-            "Please Answer The Question First!",
-            style: TextStyle(color: Colors.black),
+            message,
+            style: const TextStyle(color: Colors.black),
           ),
         ),
       ),
     );
   }
 
-  void changeColor() {
+  void checkAnswerAndUpdate(String answer) {
     setState(() {
+      if (!isPressed && answer == _questions[index].correctAnswer) {
+        score += 10;
+      }
       isPressed = true;
     });
   }
@@ -71,18 +76,27 @@ class _QuizScreenState extends State<QuizScreen> {
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
-                child: AnswerWidget(
+                child: GestureDetector(
+                  onTap: () {
+                    checkAnswerAndUpdate(answer);
+                  },
+                  child: AnswerWidget(
                     answer: answer,
                     color: isPressed
                         ? _questions[index].correctAnswer == answer
                             ? Colors.greenAccent
                             : Colors.redAccent
                         : Colors.white,
-                    onTap: changeColor),
+                  ),
+                ),
               );
             }),
             Text(
               "Question: ${index + 1}/$questionLength",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "Score: ${score}",
               style: const TextStyle(color: Colors.white),
             ),
           ],
