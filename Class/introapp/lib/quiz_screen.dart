@@ -61,6 +61,27 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
+  Iterable<Padding> giveMeAnswers() {
+    return _questions[index].answers.map((answer) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+        child: GestureDetector(
+          onTap: () {
+            checkAnswerAndUpdate(answer);
+          },
+          child: AnswerWidget(
+            answer: answer,
+            color: isPressed
+                ? _questions[index].correctAnswer == answer
+                    ? Colors.greenAccent
+                    : Colors.redAccent
+                : Colors.white,
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     int questionLength = _questions.length;
@@ -72,31 +93,13 @@ class _QuizScreenState extends State<QuizScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             QuestionWidget(question: _questions[index].question),
-            ..._questions[index].answers.map((answer) {
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
-                child: GestureDetector(
-                  onTap: () {
-                    checkAnswerAndUpdate(answer);
-                  },
-                  child: AnswerWidget(
-                    answer: answer,
-                    color: isPressed
-                        ? _questions[index].correctAnswer == answer
-                            ? Colors.greenAccent
-                            : Colors.redAccent
-                        : Colors.white,
-                  ),
-                ),
-              );
-            }),
+            ...giveMeAnswers(),
             Text(
               "Question: ${index + 1}/$questionLength",
               style: const TextStyle(color: Colors.white),
             ),
             Text(
-              "Score: ${score}",
+              "Score: $score",
               style: const TextStyle(color: Colors.white),
             ),
           ],
