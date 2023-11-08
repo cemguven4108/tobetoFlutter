@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NextButton extends StatelessWidget {
-  const NextButton({Key? key, required this.nextQuestion});
+class NextButtonWidget extends StatelessWidget {
+  const NextButtonWidget({super.key, required this.nextQuestion});
   final VoidCallback nextQuestion;
 
   @override
@@ -11,7 +11,7 @@ class NextButton extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white70,
           borderRadius: BorderRadius.circular(10.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 10.0),

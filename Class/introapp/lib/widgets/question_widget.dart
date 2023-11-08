@@ -12,7 +12,10 @@ class QuestionWidget extends StatelessWidget {
       child: Text(
         question,
         style: const TextStyle(
-            color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
