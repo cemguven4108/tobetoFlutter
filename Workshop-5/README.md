@@ -6,12 +6,19 @@ Workshop 07.11.2023
 
 //Recommended to use List Widgets
 
-//Info - ToDo location is in Class/introapp/lib/main.dart
+//Info - ToDo location is in Class/introapp/lib/
 
-//Info - Other related files are {
-    answer_widget.dart,
-    home_screen.dart,
-    next_button.dart,
-    question_widget.dart,
-    quiz_screen.dart,
+//Info - Related files are {
+    quiz_home_screen.dart
+    quiz_screen.dart
+    result_screen.dart
+
+    answer_widget.dart
+    question_widget.dart
+    next_button_widget.dart
+
+    question_model.dart
+    questions.dart
+
+    assets/images/quiz_image.jpg
 }
