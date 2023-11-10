@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:introapp/data/projects.dart';
 import 'package:introapp/models/project_model.dart';
 import 'package:introapp/widgets/info_picture_widget.dart';
 import 'package:introapp/widgets/info_widget.dart';
 import 'package:introapp/widgets/project_info_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({
+    super.key,
+    required this.name,
+    required this.info,
+    this.myProjects,
+  });
+
+  final String name;
+  final String info;
+  final List<ProjectModel>? myProjects;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -30,6 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return true;
   }
 
+  Iterable<Widget>? listProjects() {
+    return widget.myProjects?.map((project) {
+      return ProjectInfoWidget(project: project);
+    });
+  }
+
   void scrollUp() {
     controller.animateTo(
       controller.position.minScrollExtent,
@@ -40,8 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<ProjectModel> myProjects = List.of(projects);
-
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: NestedScrollView(
@@ -84,8 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ProjectInfoWidget(project: myProjects[0]),
-                      ProjectInfoWidget(project: myProjects[1]),
+                      ...?listProjects(),
                     ],
                   ),
                 ],
