@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:introapp/data/questions.dart';
-import 'package:introapp/models/question_model.dart';
-import 'package:introapp/screens/result_screen.dart';
-import 'package:introapp/widgets/answer_widget.dart';
-import 'package:introapp/widgets/next_button_widget.dart';
-import 'package:introapp/widgets/question_widget.dart';
+import 'package:introapp/apps/quiz_app/data/questions.dart';
+import 'package:introapp/apps/quiz_app/models/question_model.dart';
+import 'package:introapp/apps/quiz_app/screens/result_screen.dart';
+import 'package:introapp/apps/quiz_app/widgets/answer_widget.dart';
+import 'package:introapp/apps/quiz_app/widgets/next_button_widget.dart';
+import 'package:introapp/apps/quiz_app/widgets/question_widget.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -32,7 +32,11 @@ class _QuizScreenState extends State<QuizScreen> {
         }
       } else {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ResultScreen(questions: _questions, allResults: allResults, score: score,)));
+            builder: (context) => ResultScreen(
+                  questions: _questions,
+                  allResults: allResults,
+                  score: score,
+                )));
       }
     });
   }
@@ -52,6 +56,14 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
+  void updateAfterPress(bool value, String key) {
+    if (!isPressed && value == true) score += 10;
+    isPressed = true;
+
+    //add the pressed answer and the current question as QuestionModel to allResults list for ResultScreen
+    allResults.add(QuestionModel(_questions[index].question, {key: value}));
+  }
+
   Map<Padding, bool> listAnswers() {
     return _questions[index].answers.map((key, value) {
       return MapEntry(
@@ -60,10 +72,7 @@ class _QuizScreenState extends State<QuizScreen> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  if (!isPressed && value == true) score += 10;
-                  isPressed = true;
-                  allResults.add(
-                      QuestionModel(_questions[index].question, {key: value}));
+                  updateAfterPress(value, key);
                 });
               },
               child: AnswerWidget(

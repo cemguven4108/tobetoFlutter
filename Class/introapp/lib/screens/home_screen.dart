@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:introapp/data/projects.dart';
+import 'package:introapp/models/project_model.dart';
 import 'package:introapp/widgets/info_picture_widget.dart';
 import 'package:introapp/widgets/info_widget.dart';
 import 'package:introapp/widgets/project_info_widget.dart';
@@ -38,6 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<ProjectModel> myProjects = List.of(projects);
+
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: NestedScrollView(
@@ -77,7 +81,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 25),
                   const InfoWidget(info: "Projects", color: Colors.greenAccent),
                   const SizedBox(height: 10),
-                  const ProjectInfoWidget(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ProjectInfoWidget(project: myProjects[0]),
+                      ProjectInfoWidget(project: myProjects[1]),
+                    ],
+                  ),
                 ],
               ),
             ],

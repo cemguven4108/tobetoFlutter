@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:introapp/models/question_model.dart';
+import 'package:introapp/apps/quiz_app/models/question_model.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen(

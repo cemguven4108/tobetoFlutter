@@ -1,6 +1,8 @@
+import 'package:introapp/apps/expense_app/screens/expense_home_screen.dart';
 import 'package:introapp/models/project_model.dart';
-import 'package:introapp/screens/quiz_home_screen.dart';
+import 'package:introapp/apps/quiz_app/screens/quiz_home_screen.dart';
 
-const projects = [
-  ProjectModel("Quiz App", QuizHomeScreen(), "assets/images/winXP.jpg"),
+List<ProjectModel> projects = [
+  const ProjectModel("Quiz App", QuizHomeScreen(), "assets/images/quiz_image.jpg"),
+  const ProjectModel("Expense App", ExpenseHomeScreen(), "assets/images/expense_image.png"),
 ];

@@ -35,6 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   intl: ^0.18.1
+  uuid: ^4.2.1
+  flutter_login: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -53,8 +55,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/winXP.jpg
-    - assets/images/quiz_image.jpg
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

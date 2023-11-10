@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:introapp/screens/quiz_screen.dart';
+import 'package:introapp/apps/expense_app/screens/expense_screen.dart';
 
-class QuizHomeScreen extends StatefulWidget {
-  const QuizHomeScreen({super.key});
+class ExpenseHomeScreen extends StatefulWidget {
+  const ExpenseHomeScreen({super.key});
 
   @override
-  State<QuizHomeScreen> createState() => _QuizHomeScreenState();
+  State<ExpenseHomeScreen> createState() => _QuizHomeScreenState();
 }
 
-class _QuizHomeScreenState extends State<QuizHomeScreen> {
+class _QuizHomeScreenState extends State<ExpenseHomeScreen> {
 
-  void startQuiz() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const QuizScreen()));
+  void routeTo() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ExpenseScreen()));
   }
 
   @override
@@ -23,7 +23,7 @@ class _QuizHomeScreenState extends State<QuizHomeScreen> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/quiz_image.jpg"),
+            image: AssetImage("assets/images/expense_image.png"),
           ),
         ),
       ),
@@ -35,9 +35,9 @@ class _QuizHomeScreenState extends State<QuizHomeScreen> {
           fixedSize: MaterialStatePropertyAll(Size.fromWidth(125)),
         ),
         onPressed: () {
-          startQuiz();
+          routeTo();
         },
-        child: const Text("Quiz Up!", style: TextStyle(color: Colors.white70),),
+        child: const Text("See Expenses", style: TextStyle(color: Colors.white70),),
       ),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
