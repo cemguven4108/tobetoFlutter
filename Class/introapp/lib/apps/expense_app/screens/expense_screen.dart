@@ -5,7 +5,6 @@ import 'package:introapp/apps/expense_app/data/my_expenses.dart';
 import 'package:introapp/apps/expense_app/models/expense.dart';
 import 'package:introapp/apps/expense_app/widgets/app_expense_widget.dart';
 import 'package:introapp/apps/expense_app/widgets/app_sliver_appbar.dart';
-import 'package:introapp/screens/home_screen.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({super.key});
