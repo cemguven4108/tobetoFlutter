@@ -3,16 +3,25 @@ import 'package:flutter/material.dart';
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
     super.key,
-    required this.title,
-    this.centerTitle = false,
     this.actions,
     this.leading,
+    this.underTitle,
   });
 
-  final String title;
-  final bool? centerTitle;
+  final String? underTitle;
   final List<Widget>? actions;
   final Widget? leading;
+
+  Widget placeUnderTitle() {
+    if (underTitle != null) {
+      return Text(
+        "Total: $underTitle",
+        style: const TextStyle(color: Colors.white70, fontSize: 16),
+      );
+    } else {
+      return const Text("");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +30,14 @@ class AppBarWidget extends StatelessWidget {
       automaticallyImplyLeading: false,
       floating: true,
       snap: true,
-      centerTitle: centerTitle,
+      centerTitle: true,
       leading: leading,
-      title: Text(title),
+      title: Column(
+        children: [
+          const Text("Expenses"),
+          placeUnderTitle(),
+        ],
+      ),
       actions: actions,
     );
   }

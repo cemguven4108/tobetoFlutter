@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:introapp/apps/expense_app/widgets/pop_message.dart';
 
 class PopUpWidget extends StatelessWidget {
   const PopUpWidget({super.key, required this.func});
@@ -52,7 +51,7 @@ class PopUpWidget extends StatelessWidget {
               child: const Text("OK"),
               onPressed: () {
                 if (nameController.text == "" || priceController.text == "") {
-                  const PopMessage(message: "Please fill in the blanks");
+                  showMessage(context, "Please fill in the blanks");
                 } else {
                   func(nameController.text, double.parse(priceController.text));
                   Navigator.of(context).pop();
@@ -62,6 +61,21 @@ class PopUpWidget extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  void showMessage(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: const Color.fromARGB(255, 150, 20, 20),
+        behavior: SnackBarBehavior.floating,
+        content: Center(
+          child: Text(
+            message,
+            style: const TextStyle(color: Colors.white70),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -18,14 +18,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   Widget onLogoutAction() {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pop();
-      },
-      child: const Icon(
-        Icons.logout,
-        color: Colors.white70,
-      ),
-    );
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+        child: const Icon(Icons.logout, color: Colors.white70));
   }
 
   Widget onAddAction() {
@@ -49,13 +45,12 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       total += expense.price;
     }
 
-    return total.ceil().toString();
+    return "${total.ceil()} TL";
   }
 
   Widget buildAppBar() {
     return AppBarWidget(
-      title: "Expenses",
-      centerTitle: true,
+      underTitle: totalExpense(),
       leading: onLogoutAction(),
       actions: [
         onAddAction(),
