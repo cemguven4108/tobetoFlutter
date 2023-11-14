@@ -50,6 +50,7 @@ class NewExpense extends StatelessWidget {
             hintText: "Price: ",
             controller: priceController,
             prefixIcon: const Icon(Icons.attach_money),
+            keyboardType: TextInputType.number,
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r"[0-9]")),
               FilteringTextInputFormatter.digitsOnly,

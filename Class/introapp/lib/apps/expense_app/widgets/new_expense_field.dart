@@ -10,6 +10,7 @@ class NewExpenseField extends StatelessWidget {
     this.inputFormatters,
     this.readOnly = false,
     this.onTap,
+    this.keyboardType,
   });
 
   final String hintText;
@@ -18,6 +19,7 @@ class NewExpenseField extends StatelessWidget {
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
   final Function()? onTap;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class NewExpenseField extends StatelessWidget {
         title: Center(
           child: TextFormField(
             readOnly: readOnly,
+            keyboardType: keyboardType,
             controller: controller,
             inputFormatters: inputFormatters,
             textAlignVertical: TextAlignVertical.center,
