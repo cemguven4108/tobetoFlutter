@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:introapp/apps/expense_app/widgets/new_expense.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
     super.key,
-    this.actions,
-    this.leading,
-    this.underTitle,
+    required this.underTitle,
+    required this.onAddExpense,
   });
 
-  final String? underTitle;
-  final List<Widget>? actions;
-  final Widget? leading;
+  final String underTitle;
+  final Function onAddExpense;
 
-  Widget placeUnderTitle() {
-    if (underTitle != null) {
-      return Text(
-        "Total: $underTitle",
-        style: const TextStyle(color: Colors.white70, fontSize: 16),
-      );
-    } else {
-      return const Text("");
-    }
+  Widget addAction(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        showBottomSheet(context: context, builder: (context) {
+          return NewExpense(onAddExpense: onAddExpense);
+        });
+      },
+      child: const Icon(
+        Icons.add_circle,
+        color: Colors.white70,
+      ),
+    );
   }
 
   @override
@@ -31,14 +33,21 @@ class AppBarWidget extends StatelessWidget {
       floating: true,
       snap: true,
       centerTitle: true,
-      leading: leading,
       title: Column(
         children: [
-          const Text("Expenses"),
-          placeUnderTitle(),
+          const Text(
+            "Expenses",
+            style: TextStyle(color: Colors.white70),
+          ),
+          Text(
+            "Total: $underTitle",
+            style: const TextStyle(color: Colors.white70, fontSize: 16),
+          ),
         ],
       ),
-      actions: actions,
+      actions: [
+        addAction(context),
+      ],
     );
   }
 }

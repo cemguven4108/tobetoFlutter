@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class InfoPictureWidget extends StatelessWidget {
-  const InfoPictureWidget({super.key, required this.pictureLocation});
+class Picture extends StatelessWidget {
+  const Picture({super.key, required this.pictureLocation});
 
   final String pictureLocation;
 

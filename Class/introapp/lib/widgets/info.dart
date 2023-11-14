@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class InfoWidget extends StatelessWidget {
-  const InfoWidget({super.key, required this.info, required this.color});
+class Info extends StatelessWidget {
+  const Info({super.key, required this.info, required this.color});
 
   final String info;
   final Color color;

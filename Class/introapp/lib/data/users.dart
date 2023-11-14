@@ -10,8 +10,8 @@ List<User> myUsers = [
     projects: projects,
   ),
   User(
-    name: "Cem Guven",
-    info: "Tobeto - Mobil Gelistirici - 1B",
+    name: "Cembo",
+    info: "Tobeto - Mobil Gelistirici - 2B",
     username: "admin1",
     password: "admin",
   ),

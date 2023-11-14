@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introapp/data/users.dart';
 import 'package:introapp/models/user.dart';
 import 'package:introapp/screens/home_screen.dart';
-import 'package:introapp/widgets/text_form_widget.dart';
+import 'package:introapp/widgets/input_field.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -18,8 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
 
   void checkCredentials(String username, String password) {
+    bool isCorrect = false;
+
     for (User user in widget.users) {
       if (user.username == username && user.password == password) {
+        isCorrect = true;
+      }
+      if (isCorrect) {
         clearText();
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => HomeScreen(
@@ -27,8 +32,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   info: user.info,
                   myProjects: user.projects,
                 )));
+        break;
       }
     }
+    if (!isCorrect) showMessage("Incorrect credentials!!");
+    // for (User user in widget.users) {
+    //   if (user.username == username && user.password == password) {
+    //     clearText();
+    //     Navigator.of(context).push(MaterialPageRoute(
+    //         builder: (context) => HomeScreen(
+    //               name: user.name,
+    //               info: user.info,
+    //               myProjects: user.projects,
+    //             )));
+    //   }
+    // }
     //showMessage("Incorrect credentials!!");
   }
 
@@ -67,12 +85,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 child:
                     Icon(Icons.account_circle, size: 250, color: Colors.white),
               ),
-              TextFormWidget(
+              InputField(
                 hintText: "Username",
                 prefixIcon: const Icon(Icons.account_circle),
                 controller: usernameController,
               ),
-              TextFormWidget(
+              InputField(
                 hintText: "Password",
                 obscureText: true,
                 prefixIcon: const Icon(Icons.key),

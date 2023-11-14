@@ -4,8 +4,8 @@ import 'package:introapp/models/project_model.dart';
 //Need Improvement, for now only works manually
 //ToDo - Create Widget per Project
 //ToDo - Design so that every 4 project the app creates another Row under the previous Row that's been filled
-class ProjectInfoWidget extends StatelessWidget {
-  const ProjectInfoWidget({super.key, required this.project});
+class InfoProject extends StatelessWidget {
+  const InfoProject({super.key, required this.project});
 
   final ProjectModel project;
 

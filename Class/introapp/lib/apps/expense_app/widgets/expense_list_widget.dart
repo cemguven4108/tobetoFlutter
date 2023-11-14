@@ -13,7 +13,10 @@ class ExpenseListWidget extends StatelessWidget {
       itemCount: expenses.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return ExpenseWidget(expense: expenses[index]);
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: ExpenseWidget(expense: expenses[index]),
+        );
       },
     );
   }
