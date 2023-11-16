@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: NestedScrollView(
-        floatHeaderSlivers: true,
+        floatHeaderSlivers: true, 
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           const SliverAppBar(
             backgroundColor: Colors.purple,

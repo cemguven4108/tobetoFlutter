@@ -45,7 +45,7 @@ class _QuizScreenState extends State<QuizScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: const Color.fromARGB(255, 150, 20, 20),
-        behavior: SnackBarBehavior.floating,
+        behavior: SnackBarBehavior.fixed,
         content: Center(
           child: Text(
             message,

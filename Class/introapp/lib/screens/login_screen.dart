@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.deepPurple,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50),
+          padding: const EdgeInsets.symmetric(vertical: 100),
           child: Column(
             children: [
               const CircleAvatar(
@@ -112,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
