@@ -4,15 +4,17 @@ import 'package:intl/intl.dart';
 import 'package:introapp/apps/expense_app/models/expense.dart';
 import 'package:introapp/apps/expense_app/widgets/expense_field.dart';
 
-class NewExpense extends StatelessWidget {
-  const NewExpense({
+class UpdateExpense extends StatelessWidget {
+  const UpdateExpense({
     super.key,
-    required this.onAddExpense,
+    required this.expenseToUpdate,
+    required this.updateExpense,
   });
 
-  final Function onAddExpense;
+  final Expense expenseToUpdate;
+  final Function updateExpense;
 
-  void onAddExpenseAction(
+  void updateExpenseAction(
     BuildContext context,
     TextEditingController nameController,
     TextEditingController priceController,
@@ -23,11 +25,12 @@ class NewExpense extends StatelessWidget {
         dateController.text == "") {
       showMessage(context, "Please fill in the blanks");
     } else {
-      onAddExpense(Expense(
-        name: nameController.text,
-        price: double.parse(priceController.text),
-        date: DateTime.parse(dateController.text),
-      ));
+      updateExpense(
+        expenseToUpdate.id,
+        nameController.text,
+        double.parse(priceController.text),
+        DateTime.parse(dateController.text),
+      );
       Navigator.of(context).pop();
     }
   }
@@ -64,9 +67,12 @@ class NewExpense extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController priceController = TextEditingController();
-    TextEditingController dateController = TextEditingController();
+    TextEditingController nameController =
+        TextEditingController(text: expenseToUpdate.name);
+    TextEditingController priceController =
+        TextEditingController(text: expenseToUpdate.price.toString());
+    TextEditingController dateController =
+        TextEditingController(text: DateFormat("yyyy-MM-dd HH:mm").format(expenseToUpdate.date));
 
     return SizedBox(
       height: 350,
@@ -100,10 +106,16 @@ class NewExpense extends StatelessWidget {
             style: const ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.black54),
             ),
-            onPressed: () => onAddExpenseAction(
-                context, nameController, priceController, dateController),
+            onPressed: () {
+              updateExpenseAction(
+                context,
+                nameController,
+                priceController,
+                dateController,
+              );
+            },
             child: const Text(
-              "Add Expense",
+              "Update Expense",
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -120,7 +132,7 @@ class NewExpense extends StatelessWidget {
         content: Center(
           child: Text(
             message,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: const TextStyle(color: Colors.white70),
           ),
         ),
       ),

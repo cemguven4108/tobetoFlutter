@@ -14,13 +14,16 @@ class AppBarWidget extends StatelessWidget {
   Widget addAction(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showBottomSheet(context: context, builder: (context) {
-          return NewExpense(onAddExpense: onAddExpense);
-        });
+        showBottomSheet(
+          context: context,
+          builder: (context) {
+            return NewExpense(onAddExpense: onAddExpense);
+          },
+        );
       },
-      child: const Icon(
+      child: Icon(
         Icons.add_circle,
-        color: Colors.white70,
+        color: Theme.of(context).iconTheme.color,
       ),
     );
   }
@@ -28,25 +31,28 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.deepPurple.shade900,
       automaticallyImplyLeading: false,
       floating: true,
       snap: true,
       centerTitle: true,
       title: Column(
         children: [
-          const Text(
+          Text(
             "Expenses",
-            style: TextStyle(color: Colors.white70),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           Text(
-            "Total: $underTitle",
-            style: const TextStyle(color: Colors.white70, fontSize: 16),
+            underTitle,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ],
       ),
       actions: [
-        addAction(context),
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: addAction(context),
+        ),
       ],
     );
   }

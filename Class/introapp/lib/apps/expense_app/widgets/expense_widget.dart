@@ -19,20 +19,26 @@ class ExpenseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white70,
+      color: Theme.of(context).cardTheme.color,
       child: ListTile(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               expense.name,
-              style: const TextStyle(color: Colors.black),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text("${formatPrice(expense.price)} TL"),
-                Text(formatDate(expense.date)),
+                Text(
+                  "${formatPrice(expense.price)} TL",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                Text(
+                  formatDate(expense.date),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
               ],
             ),
           ],

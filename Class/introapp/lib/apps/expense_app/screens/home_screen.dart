@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:introapp/apps/expense_app/screens/expense_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class ExpenseHomeScreen extends StatelessWidget {
+  const ExpenseHomeScreen({super.key});
 
   ElevatedButton seeExpensesButton(BuildContext context) {
     return ElevatedButton(
-      style: const ButtonStyle(
-        shadowColor: MaterialStatePropertyAll(Colors.transparent),
-        backgroundColor:
-            MaterialStatePropertyAll(Color.fromARGB(255, 20, 20, 20)),
-        fixedSize: MaterialStatePropertyAll(Size.fromWidth(125)),
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(Colors.deepOrange.withAlpha(100)),
       ),
       onPressed: () {
         Navigator.of(context).push(
@@ -18,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       },
       child: const Text(
         "See Expenses",
-        style: TextStyle(color: Colors.white70),
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -30,8 +27,18 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.blue.shade900.withOpacity(0.8),
+              Colors.deepPurple.shade900.withOpacity(0.8),
+              Colors.deepOrange.shade900.withOpacity(0.8),
+            ],
+          ),
+          image: const DecorationImage(
+            opacity: 0.6,
             image: AssetImage("assets/images/expense_image.png"),
           ),
         ),
