@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:introapp/apps/expense_app/models/enums/category.dart';
 import 'package:introapp/apps/expense_app/models/expense.dart';
+import 'package:introapp/apps/expense_app/widgets/dropdown_button_widget.dart';
 import 'package:introapp/apps/expense_app/widgets/expense_field.dart';
 
 class NewExpense extends StatelessWidget {
@@ -17,6 +19,7 @@ class NewExpense extends StatelessWidget {
     TextEditingController nameController,
     TextEditingController priceController,
     TextEditingController dateController,
+    Category selectedCategory,
   ) {
     if (nameController.text == "" ||
         priceController.text == "" ||
@@ -27,6 +30,7 @@ class NewExpense extends StatelessWidget {
         name: nameController.text,
         price: double.parse(priceController.text),
         date: DateTime.parse(dateController.text),
+        category: selectedCategory,
       ));
       Navigator.of(context).pop();
     }
@@ -67,9 +71,10 @@ class NewExpense extends StatelessWidget {
     TextEditingController nameController = TextEditingController();
     TextEditingController priceController = TextEditingController();
     TextEditingController dateController = TextEditingController();
+    Category selectedCategory = Category.other;
 
     return SizedBox(
-      height: 350,
+      height: 400,
       child: Column(
         children: [
           ExpenseField(
@@ -96,12 +101,18 @@ class NewExpense extends StatelessWidget {
               writeDateToTextField(dateController, await pickDate(context));
             },
           ),
+          DropdownButtonWidget(selectedCategory: selectedCategory),
           ElevatedButton(
             style: const ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.black54),
             ),
             onPressed: () => onAddExpenseAction(
-                context, nameController, priceController, dateController),
+              context,
+              nameController,
+              priceController,
+              dateController,
+              selectedCategory,
+            ),
             child: const Text(
               "Add Expense",
               style: TextStyle(color: Colors.white),
